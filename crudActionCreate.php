@@ -1,12 +1,12 @@
 <?php
 
-namespace bbird\crudactions;
+namespace andreykluev\crudactions;
 
 use Yii;
 
 /**
  * Class crudActionCreate
- * @package bbird\crudactions
+ * @package andreykluev\crudactions
  */
 class crudActionCreate extends crudActionBase
 {

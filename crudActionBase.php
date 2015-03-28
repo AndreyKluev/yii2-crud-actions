@@ -1,6 +1,6 @@
 <?php
 
-namespace bbird\crudactions;
+namespace andreykluev\crudactions;
 
 use Yii;
 use yii\base\Action;
@@ -8,7 +8,7 @@ use yii\web\HttpException;
 
 /**
  * Class crudActionBase
- * @package bbird\crudactions
+ * @package andreykluev\crudactions
  */
 class crudActionBase extends Action
 {

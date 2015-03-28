@@ -1,13 +1,13 @@
 <?php
 
-namespace bbird\crudactions;
+namespace andreykluev\crudactions;
 
 use Yii;
 use yii\web\HttpException;
 
 /**
  * Class crudActionUpdate
- * @package bbird\crudactions
+ * @package andreykluev\crudactions
  */
 class crudActionUpdate extends crudActionBase
 {

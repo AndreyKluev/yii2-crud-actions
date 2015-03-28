@@ -8,21 +8,21 @@
 "repositories": [
 	{
 		"type": "vcs",
-		"url": "https://BBird@bitbucket.org/BBird/yii2-crud-actions.git"
+		"url": "https://github.com/AndreyKluev/yii2-crud-actions.git"
 	}
 ],
 "require": {
 	...
-	"BBird/yii2-crud-actions":"dev-master"
+	"andreykluev/yii2-crud-actions":"dev-master"
 },
 ```
 
 ## Использование ##
 
 ``` php
-use bbird\crudactions\crudActionCreate;
-use bbird\crudactions\crudActionDelete;
-use bbird\crudactions\crudActionUpdate;
+use andreykluev\crudactions\crudActionCreate;
+use andreykluev\crudactions\crudActionDelete;
+use andreykluev\crudactions\crudActionUpdate;
 
 use common\models\Album;
 
