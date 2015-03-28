@@ -1,0 +1,25 @@
+{
+	"name": "bbird/yii2-crud-actions",
+	"description": "Yii2 base actions",
+	"type": "yii2-extension",
+	"keywords": ["yii2", "crud"],
+	"license": "BSD-3-Clause",
+	"version": "0.2",
+	"authors": [
+		{
+			"name": "Andrey V. Kluev",
+			"email": "andrey.kluev@gmail.com"
+		}
+	],
+	"support": {
+		"source": "https://bitbucket.org/BBird/yii2-crud-actions"
+	},
+	"require": {
+		"yiisoft/yii2": "*"
+	},
+	"autoload": {
+		"psr-4": {
+			"bbird\\crudactions\\": ""
+		}
+	}
+}
