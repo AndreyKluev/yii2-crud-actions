@@ -24,7 +24,7 @@ use andreykluev\crudactions\crudActionCreate;
 use andreykluev\crudactions\crudActionDelete;
 use andreykluev\crudactions\crudActionUpdate;
 
-use common\models\Album;
+use common\models\Product;
 
 class CatalogController extends AppController
 {
@@ -34,27 +34,27 @@ class CatalogController extends AppController
 	public function actions()
 	{
 		return array(
-			'insert-album' => [
+			'insert' => [
 				'class' => crudActionCreate::className(),
-				'modelClass' => Album::className(),
+				'modelClass' => Product::className(),
 				'view' => 'update-album',
-				'onBeforeAction' =>  [$this, 'beforeSaveAlbum'],
-				'onAfterAction' =>  [$this, 'afterSaveAlbum'],
+				'onBeforeAction' =>  [$this, 'beforeSaveProduct'],
+				'onAfterAction' =>  [$this, 'afterSaveProduct'],
 			],
 			
-			'update-album' => [
+			'update' => [
 				'class' => crudActionUpdate::className(),
-				'modelClass' => Album::className(),
+				'modelClass' => Product::className(),
 				'view' => 'update-album',
-				'onBeforeAction' =>  [$this, 'beforeSaveAlbum'],
-				'onAfterAction' =>  [$this, 'afterSaveAlbum'],
+				'onBeforeAction' =>  [$this, 'beforeSaveProduct'],
+				'onAfterAction' =>  [$this, 'afterSaveProduct'],
 			],
 			
-			'delete-album' => [
+			'delete' => [
 				'class' => crudActionDelete::className(),
-				'modelClass' => Album::className(),
-				'onBeforeAction' =>  [$this, 'beforeDeleteAlbum'],
-				'onAfterAction' =>  [$this, 'afterDeleteAlbum'],
+				'modelClass' => Product::className(),
+				'onBeforeAction' =>  [$this, 'beforeDeleteProduct'],
+				'onAfterAction' =>  [$this, 'afterDeleteProduct'],
 			],
 
 			...
@@ -63,22 +63,22 @@ class CatalogController extends AppController
 
 	...
 	
-	public function beforeSaveAlbum()
+	public function beforeSaveProduct()
 	{
 		// Ваш код
 	}
 	
-	public function afterSaveAlbum($isSave = false)
+	public function afterSaveProduct($isSave = false)
 	{
 		// Ваш код
 	}
 	
-	public function beforeDeleteAlbum()
+	public function beforeDeleteProduct()
 	{
 		// Ваш код
 	}
 	
-	public function afterDeleteAlbum($isDelete = false)
+	public function afterDeleteProduct($isDelete = false)
 	{
 		// Ваш код
 	}
