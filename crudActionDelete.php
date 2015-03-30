@@ -27,7 +27,9 @@ class crudActionDelete extends crudActionBase
 		// Если определн onBeforeDelete, выполняем ПЕРЕД удалением
 		if ($this->onBeforeAction) call_user_func($this->onBeforeAction);
 
+		$isDelete = $model->delete();
+
 		// Если определн onAfterDelete, выполняем ПОСЛЕ удаления
-		if ($this->onAfterAction) call_user_func($this->onAfterAction, $model->delete());
+		if ($this->onAfterAction) call_user_func($this->onAfterAction, $isDelete);
 	}
 }
