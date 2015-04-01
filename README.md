@@ -5,15 +5,9 @@
 В composer.json:
 
 ```
-"repositories": [
-	{
-		"type": "vcs",
-		"url": "https://github.com/AndreyKluev/yii2-crud-actions.git"
-	}
-],
 "require": {
 	...
-	"andreykluev/yii2-crud-actions":"dev-master"
+	"andreykluev/yii2-crud-actions": "dev-master"
 },
 ```
 
