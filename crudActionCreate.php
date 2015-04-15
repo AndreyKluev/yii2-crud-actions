@@ -26,6 +26,7 @@ class crudActionCreate extends crudActionBase
 				// Если определн onBeforeSave, выполняем ПЕРЕД сохранения
 				if ($this->onBeforeAction) call_user_func($this->onBeforeAction);
 
+				// Добавляем
 				$isCreate = $model->save();
 
 				// Если определн onAfterSave, выполняем ПОСЛЕ сохранения

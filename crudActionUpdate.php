@@ -32,7 +32,8 @@ class crudActionUpdate extends crudActionBase
 				// Если определн onBeforeSave, выполняем ПЕРЕД сохранения
 				if ($this->onBeforeAction) call_user_func($this->onBeforeAction);
 
-				$isUpdate = $model->save();
+				// Сохраняем
+				$isUpdate = $model->update();
 
 				// Если определн onAfterSave, выполняем ПОСЛЕ сохранения
 				if ($this->onAfterAction) call_user_func($this->onAfterAction, $isUpdate);
