@@ -16,6 +16,7 @@ class crudActionBase extends Action
 	 * @var string Имя класса модели
 	 */
 	public $modelClass;
+	public $model = null;
 
 	/**
 	 * @var string View для отображения формы
@@ -34,13 +35,16 @@ class crudActionBase extends Action
 	 */
 	protected function loadModel($id)
 	{
-		// Определяем модель в соответствии с переданным именем класса
-		$model = call_user_func([$this->modelClass, 'findOne'], [$id]);
+		// Если модель не определена
+		if (!$this->model) {
+			// Определяем модель в соответствии с переданным именем класса
+			$this->model = call_user_func([$this->modelClass, 'findOne'], [$id]);
+		}
 
 		// Если модель не найдена, генерим Exception
-		if ($model === null)
+		if ($this->model === null)
 			throw new HttpException(404, 'Model not found');
 
-		return $model;
+		return $this->model;
 	}
 }

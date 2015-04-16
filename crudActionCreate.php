@@ -15,19 +15,23 @@ class crudActionCreate extends crudActionBase
 	 */
 	public function run()
 	{
-		// Получаем модель для создания
-		$model = new $this->modelClass;
-		$model->scenario = 'insert';
+		// Если модель не определена
+		if (!$this->model) {
+			// Получаем модель для создания
+			$this->model = new $this->modelClass;
+		}
+		$this->model->scenario = 'insert';
 
 		// Загружаем модель
-		if ($model->load(Yii::$app->request->post())) {
+		if ($this->model->load(Yii::$app->request->post())) {
 			// Валидируем модель
-			if ($model->validate()) {
+			if ($this->model->validate()) {
 				// Если определн onBeforeSave, выполняем ПЕРЕД сохранения
 				if ($this->onBeforeAction) call_user_func($this->onBeforeAction);
 
 				// Добавляем
-				$isCreate = $model->insert();
+				// Валидировать модель не нужно, мы это уже сделали
+				$isCreate = $this->model->insert(false, $this->model->attributes);
 
 				// Если определн onAfterSave, выполняем ПОСЛЕ сохранения
 				if ($this->onAfterAction) call_user_func($this->onAfterAction, $isCreate);
@@ -35,7 +39,7 @@ class crudActionCreate extends crudActionBase
 		}
 
 		return $this->controller->render($this->view, [
-			'model' => $model,
+			'model' => $this->model,
 		]);
 	}
 }

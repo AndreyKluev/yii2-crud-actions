@@ -16,24 +16,28 @@ class crudActionUpdate extends crudActionBase
 	 */
 	public function run()
 	{
-		// Если не передан id, генерим Exception
-		$id = Yii::$app->request->get('id', 0);
-		if ($id === 0)
-			throw new HttpException(404, 'Expected get parameter id.');
+		// Если модель не определена
+		if (!$this->model) {
+			// Если не передан id, генерим Exception
+			$id = Yii::$app->request->get('id', 0);
+			if ($id === 0)
+				throw new HttpException(404, 'Expected get parameter id.');
 
-		// Получаем модель для редактирования
-		$model = $this->loadModel($id);
-		$model->scenario = 'update';
+			// Получаем модель для редактирования
+			$this->loadModel($id);
+		}
+		$this->model->scenario = 'update';
 
 		// Загружаем модель
-		if ($model->load(Yii::$app->request->post())) {
+		if ($this->model->load(Yii::$app->request->post())) {
 			// Валидируем модель
-			if ($model->validate()) {
+			if ($this->model->validate()) {
 				// Если определн onBeforeSave, выполняем ПЕРЕД сохранения
 				if ($this->onBeforeAction) call_user_func($this->onBeforeAction);
 
 				// Сохраняем
-				$isUpdate = $model->update();
+				// Валидировать модель не нужно, мы это уже сделали
+				$isUpdate = $this->model->update(false);
 
 				// Если определн onAfterSave, выполняем ПОСЛЕ сохранения
 				if ($this->onAfterAction) call_user_func($this->onAfterAction, $isUpdate);
@@ -41,7 +45,7 @@ class crudActionUpdate extends crudActionBase
 		}
 
 		return $this->controller->render($this->view, [
-			'model' => $model,
+			'model' => $this->model,
 		]);
 	}
 }
