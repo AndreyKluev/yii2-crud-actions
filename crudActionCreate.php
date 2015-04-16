@@ -31,7 +31,7 @@ class crudActionCreate extends crudActionBase
 
 				// Добавляем
 				// Валидировать модель не нужно, мы это уже сделали
-				$isCreate = $this->model->insert(false, $this->model->attributes);
+				$isCreate = $this->model->insert(false);
 
 				// Если определн onAfterSave, выполняем ПОСЛЕ сохранения
 				if ($this->onAfterAction) call_user_func($this->onAfterAction, $isCreate);
