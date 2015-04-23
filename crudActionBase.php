@@ -12,39 +12,43 @@ use yii\web\HttpException;
  */
 class crudActionBase extends Action
 {
-	/**
-	 * @var string Имя класса модели
-	 */
-	public $modelClass;
-	public $model = null;
+    /**
+     * @var string Имя класса модели
+     */
+    public $modelClass;
+    public $model = null;
+    public $attributes = [];
 
-	/**
-	 * @var string View для отображения формы
-	 */
-	public $view;
+    /**
+     * @var string View для отображения формы
+     */
+    public $view;
 
-	public $onBeforeAction = null;
-	public $onAfterAction = null;
+    public $onBeforeAction = null;
+    public $onAfterAction = null;
 
-	/**
-	 * Возвращает модель
-	 *
-	 * @param int $id
-	 * @return mixed
-	 * @throws HttpException
-	 */
-	protected function loadModel($id)
-	{
-		// Если модель не определена
-		if (!$this->model) {
-			// Определяем модель в соответствии с переданным именем класса
-			$this->model = call_user_func([$this->modelClass, 'findOne'], [$id]);
-		}
+    /**
+     * Возвращает модель
+     *
+     * @param int $id
+     * @return mixed
+     * @throws HttpException
+     */
+    protected function loadModel($id)
+    {
+        // Если модель не определена
+        if (!$this->model) {
+            // Определяем модель в соответствии с переданным именем класса
+            $this->model = call_user_func([$this->modelClass, 'findOne'], [$id]);
+        }
 
-		// Если модель не найдена, генерим Exception
-		if ($this->model === null)
-			throw new HttpException(404, 'Model not found');
+        // Определяем переданные поля
+        $this->model->setAttributes($this->attributes);
 
-		return $this->model;
-	}
+        // Если модель не найдена, генерим Exception
+        if ($this->model === null)
+            throw new HttpException(404, 'Model not found');
+
+        return $this->model;
+    }
 }

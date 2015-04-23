@@ -10,36 +10,40 @@ use Yii;
  */
 class crudActionCreate extends crudActionBase
 {
-	/**
-	 * @inheritdoc
-	 */
-	public function run()
-	{
-		// Если модель не определена
-		if (!$this->model) {
-			// Получаем модель для создания
-			$this->model = new $this->modelClass;
-		}
-		$this->model->scenario = 'insert';
+    /**
+     * @inheritdoc
+     */
+    public function run()
+    {
+        // Если модель не определена
+        if (!$this->model) {
+            // Получаем модель для создания
+            $this->model = new $this->modelClass;
+        }
+        // Определяем сценарий валидации
+        $this->model->scenario = 'insert';
 
-		// Загружаем модель
-		if ($this->model->load(Yii::$app->request->post())) {
-			// Валидируем модель
-			if ($this->model->validate()) {
-				// Если определн onBeforeSave, выполняем ПЕРЕД сохранения
-				if ($this->onBeforeAction) call_user_func($this->onBeforeAction);
+        // Определяем переданные поля
+        $this->model->setAttributes($this->attributes);
 
-				// Добавляем
-				// Валидировать модель не нужно, мы это уже сделали
-				$isCreate = $this->model->insert(false);
+        // Загружаем модель
+        if ($this->model->load(Yii::$app->request->post())) {
+            // Валидируем модель
+            if ($this->model->validate()) {
+                // Если определн onBeforeSave, выполняем ПЕРЕД сохранения
+                if ($this->onBeforeAction) call_user_func($this->onBeforeAction);
 
-				// Если определн onAfterSave, выполняем ПОСЛЕ сохранения
-				if ($this->onAfterAction) call_user_func($this->onAfterAction, $isCreate);
-			}
-		}
+                // Добавляем
+                // Валидировать модель не нужно, мы это уже сделали
+                $isCreate = $this->model->insert(false);
 
-		return $this->controller->render($this->view, [
-			'model' => $this->model,
-		]);
-	}
+                // Если определн onAfterSave, выполняем ПОСЛЕ сохранения
+                if ($this->onAfterAction) call_user_func($this->onAfterAction, $isCreate);
+            }
+        }
+
+        return $this->controller->render($this->view, [
+            'model' => $this->model,
+        ]);
+    }
 }

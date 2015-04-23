@@ -11,7 +11,7 @@
 },
 ```
 
-## Использование ##
+## Варианты использования ##
 
 ``` php
 use andreykluev\crudactions\crudActionCreate;
@@ -30,7 +30,7 @@ class CatalogController extends AppController
 		return array(
 			'insert' => [
 				'class' => crudActionCreate::className(),
-				'modelClass' => Product::className(),
+				'model' => new Product(),
 				'view' => 'update-album',
 				'onBeforeAction' =>  [$this, 'beforeSaveProduct'],
 				'onAfterAction' =>  [$this, 'afterSaveProduct'],
@@ -39,6 +39,10 @@ class CatalogController extends AppController
 			'update' => [
 				'class' => crudActionUpdate::className(),
 				'modelClass' => Product::className(),
+                'attributes' => [
+                    'id_user' => Yii::$app->user->identity->getId(),
+                    'id_album' => Yii::$app->request->get('idAlbum', 0),
+                ],
 				'view' => 'update-album',
 				'onBeforeAction' =>  [$this, 'beforeSaveProduct'],
 				'onAfterAction' =>  [$this, 'afterSaveProduct'],
