@@ -1,24 +1,27 @@
 {
-	"name": "andreykluev/yii2-crud-actions",
-	"description": "Yii2 crud actions",
-	"type": "yii2-extension",
-	"keywords": ["yii2", "crud"],
-	"license": "BSD-3-Clause",
-	"authors": [
-		{
-			"name": "Andrey V. Kluev",
-			"email": "andrey.kluev@gmail.com"
-		}
-	],
-	"support": {
-		"source": "https://github.com/AndreyKluev/yii2-crud-actions"
-	},
-	"require": {
-		"yiisoft/yii2": "*"
-	},
-	"autoload": {
-		"psr-4": {
-			"andreykluev\\crudactions\\": ""
-		}
-	}
+    "name": "andreykluev/yii2-crud-actions",
+    "description": "Yii2 crud actions",
+    "type": "yii2-extension",
+    "keywords": ["yii2", "crud"],
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Andrey V. Kluev",
+            "email": "andrey.kluev@gmail.com"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/AndreyKluev/yii2-crud-actions"
+    },
+    "require": {
+        "yiisoft/yii2": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "andreykluev\\crudactions\\": ""
+        }
+    }
 }
