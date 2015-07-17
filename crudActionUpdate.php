@@ -29,6 +29,7 @@ class crudActionUpdate extends crudActionBase
         $this->model->scenario = 'update';
 
         // Загружаем модель
+        $isUpdate = false;
         if ($this->model->load(Yii::$app->request->post())) {
             // Валидируем модель
             if ($this->model->validate()) {
@@ -45,7 +46,8 @@ class crudActionUpdate extends crudActionBase
         }
 
         $result = [
-            'model' => $this->model,
+            'result' => $isUpdate,
+            'model' => $this->model
         ];
 
         if ($this->returnType === 'json') {

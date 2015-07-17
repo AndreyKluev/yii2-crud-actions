@@ -27,6 +27,7 @@ class crudActionCreate extends crudActionBase
         $this->model->setAttributes($this->attributes);
 
         // Загружаем модель
+        $isCreate = false;
         if ($this->model->load(Yii::$app->request->post())) {
             // Валидируем модель
             if ($this->model->validate()) {
@@ -43,7 +44,8 @@ class crudActionCreate extends crudActionBase
         }
 
         $result = [
-            'model' => $this->model,
+            'result' => $isCreate,
+            'model' => $this->model
         ];
 
         if ($this->returnType === 'json') {
