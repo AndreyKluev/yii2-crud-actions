@@ -44,8 +44,14 @@ class crudActionUpdate extends crudActionBase
             }
         }
 
-        return $this->controller->render($this->view, [
+        $result = [
             'model' => $this->model,
-        ]);
+        ];
+
+        if ($this->returnType === 'json') {
+            return $result;
+        } else {
+            return $this->controller->render($this->view, $result);
+        }
     }
 }

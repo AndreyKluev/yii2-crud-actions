@@ -24,6 +24,8 @@ class crudActionBase extends Action
      */
     public $view;
 
+    public $returnType;
+
     public $onBeforeAction = null;
     public $onAfterAction = null;
 
