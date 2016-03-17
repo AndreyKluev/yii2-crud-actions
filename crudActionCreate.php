@@ -3,6 +3,7 @@
 namespace andreykluev\crudactions;
 
 use Yii;
+use yii\base\InvalidParamException;
 
 /**
  * Class crudActionCreate
@@ -11,7 +12,7 @@ use Yii;
 class crudActionCreate extends crudActionBase
 {
     /**
-     * @inheritdoc
+     * @throws InvalidParamException
      */
     public function run()
     {
@@ -21,7 +22,7 @@ class crudActionCreate extends crudActionBase
             $this->model = new $this->modelClass;
         }
         // Определяем сценарий валидации
-        $this->model->scenario = 'insert';
+        $this->model->setScenario('insert');
 
         // Определяем переданные поля
         $this->model->setAttributes($this->attributes);

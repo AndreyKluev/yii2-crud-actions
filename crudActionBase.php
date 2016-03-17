@@ -26,8 +26,8 @@ class crudActionBase extends Action
 
     public $returnType;
 
-    public $onBeforeAction = null;
-    public $onAfterAction = null;
+    public $onBeforeAction;
+    public $onAfterAction;
 
     /**
      * Возвращает модель

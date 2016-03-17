@@ -3,6 +3,7 @@
 namespace andreykluev\crudactions;
 
 use Yii;
+use yii\base\InvalidParamException;
 use yii\web\HttpException;
 
 /**
@@ -12,7 +13,8 @@ use yii\web\HttpException;
 class crudActionDelete extends crudActionBase
 {
     /**
-     * @inheritdoc
+     * @throws HttpException
+     * @throws InvalidParamException
      */
     public function run()
     {

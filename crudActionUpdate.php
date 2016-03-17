@@ -3,6 +3,7 @@
 namespace andreykluev\crudactions;
 
 use Yii;
+use yii\base\InvalidParamException;
 use yii\web\HttpException;
 
 /**
@@ -12,7 +13,8 @@ use yii\web\HttpException;
 class crudActionUpdate extends crudActionBase
 {
     /**
-     * @inheritdoc
+     * @throws HttpException
+     * @throws InvalidParamException
      */
     public function run()
     {
@@ -20,13 +22,14 @@ class crudActionUpdate extends crudActionBase
         if (!$this->model) {
             // Если не передан id, генерим Exception
             $id = Yii::$app->request->get('id', 0);
-            if ($id === 0)
+            if ($id === 0) {
                 throw new HttpException(404, 'Expected get parameter id.');
+            }
 
             // Получаем модель для редактирования
             $this->loadModel($id);
         }
-        $this->model->scenario = 'update';
+        $this->model->setScenario('update');
 
         // Загружаем модель
         $isUpdate = false;
